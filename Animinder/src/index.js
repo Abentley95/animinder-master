@@ -8,6 +8,7 @@ import "semantic-ui-css/semantic.min.css";
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './rootReducer';
+import { userLoggedIn } from './actions/auth';
 
 
 /* eslint-disable no-underscore-dangle */
@@ -17,6 +18,11 @@ const store = createStore(
     composeEnhancers(applyMiddleware(thunk))
 );
 /* eslint-enable */
+
+if(localStorage.animinderJWT) {
+    const user = { token: localStorage.animinderJWT };
+    store.dispatch(userLoggedIn(user));
+}
 
 ReactDOM.render(
 <BrowserRouter>
