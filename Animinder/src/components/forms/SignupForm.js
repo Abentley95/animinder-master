@@ -1,7 +1,6 @@
-/* eslint-disable */
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Form, Button, Message } from 'semantic-ui-react';
+import { Form, Button, } from 'semantic-ui-react';
 import Validator from 'validator';
 import InlineError from '../messages/InlineError';
 
@@ -9,7 +8,7 @@ const FormStyle = {
     marginTop: "10px"
 }
 
-export default class LoginForm extends React.Component {
+export default class SignupForm extends React.Component {
     state={
         data: {
             email: '',
@@ -21,19 +20,21 @@ export default class LoginForm extends React.Component {
 
     onChange = (e) => {
         this.setState({
+            ...this.state,
             data: {...this.state.data, [e.target.name]: e.target.value}
         });
     }
 
-    onSubmit = () => {
+    onSubmit = (e) => {
+        e.preventDefault()
         const errors = this.validate(this.state.data);
-        this.setState({
-            errors
-        });
+        this.setState({ errors });
         if(Object.keys(errors).length === 0) {
             this.setState({ loading: true });
             this.props.submit(this.state.data)
-            .catch(err => this.setState({ errors: err.response.data.errors, loading: false}));
+            .catch(err => {
+                console.log('err', this.state.data);
+                this.setState({ errors: err.response.data.errors, loading: false})});
         }
     }
 
@@ -47,13 +48,7 @@ export default class LoginForm extends React.Component {
     render () {
         const { data, errors, loading} = this.state;
         return (
-            <Form style={FormStyle} onSubmit={this.onSubmit} loading={ loading }>
-                { errors.global && (
-                    <Message negative>
-                        <Message.Header> something went wrong </Message.Header>
-                        <p>{errors.global}</p>
-                    </Message>
-                )}
+            <Form style={FormStyle} onSubmit={this.onSubmit} loading={loading}>
                 <Form.Field error={!!errors.email}>
                     <label htmlFor="email">Email</label>
                     <input 
@@ -76,12 +71,12 @@ export default class LoginForm extends React.Component {
                     onChange={this.onChange}/>
                 {errors.password && <InlineError text={errors.password}/>}
                 </Form.Field>
-                <Button primary>Login</Button>
+                <Button primary>Sign Up</Button>
             </Form>
         );
     }
-};
+}
 
-LoginForm.propTypes = {
+SignupForm.propTypes = {
     submit: Proptypes.func.isRequired
 };
