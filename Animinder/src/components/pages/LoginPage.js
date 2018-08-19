@@ -1,6 +1,7 @@
 import React from 'react';
 import 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import Link from 'react-router-dom';
 import LoginForm from '../forms/LoginForm';
@@ -23,6 +24,8 @@ class LoginPage extends React.Component {
             <CenteredContainer>
                 <h1>Login</h1>
                 <LoginForm submit={this.submit}/>
+
+                <Link to="/forgot_password">Forgot Password</Link>
             </CenteredContainer>
         );
     }

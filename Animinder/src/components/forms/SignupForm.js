@@ -33,7 +33,6 @@ export default class SignupForm extends React.Component {
             this.setState({ loading: true });
             this.props.submit(this.state.data)
             .catch(err => {
-                console.log('err', this.state.data);
                 this.setState({ errors: err.response.data.errors, loading: false})});
         }
     }

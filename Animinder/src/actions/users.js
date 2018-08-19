@@ -4,6 +4,6 @@ import { userLoggedIn } from "./auth";
 
 export const signup = data => dispatch =>
   api.user.signup(data).then(user => {
-    localStorage.bookwormJWT = user.token;
+    localStorage.animinderJWT = user.token;
     dispatch(userLoggedIn(user));
   });

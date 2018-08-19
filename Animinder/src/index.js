@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter, Route } from 'react-router-dom';
+import decode from 'jwt-decode';
 import "semantic-ui-css/semantic.min.css";
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -20,7 +21,13 @@ const store = createStore(
 /* eslint-enable */
 
 if(localStorage.animinderJWT) {
-    const user = { token: localStorage.animinderJWT };
+    const payload = decode(localStorage.animinderJWT);
+    const user = { 
+        token: localStorage.animinderJWT,
+        email: payload.email,
+        confirmed: payload.confirmed
+    };
+    console.log('something', user);
     store.dispatch(userLoggedIn(user));
 }
 
