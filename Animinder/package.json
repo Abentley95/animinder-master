@@ -6,26 +6,26 @@
   "dependencies": {
     "axios": "^0.18.0",
     "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.12.0",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
     "jwt-decode": "^2.2.0",
-    "prettier": "^1.13.5",
+    "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-css": "^2.3.2",
+    "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.81.3",
-    "styled-components": "^3.3.2",
-    "validator": "^10.4.0"
+    "styled-components": "^3.4.2",
+    "validator": "^10.6.0"
   },
   "main": "src/electron-starter.js",
   "scripts": {
@@ -39,9 +39,9 @@
     "lint": "eslint src"
   },
   "devDependencies": {
-    "electron": "^2.0.2",
+    "electron": "^2.0.7",
     "eslint": "^4.19.1",
-    "foreman": "^3.0.0"
+    "foreman": "^3.0.1"
   },
   "proxy": "http://localhost:8080"
 }
