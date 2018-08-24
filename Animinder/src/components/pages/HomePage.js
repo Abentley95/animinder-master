@@ -1,20 +1,35 @@
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions/auth';
+import { CenteredContainer } from '../styles/Containers';
 
+
+const HomePageContainer = CenteredContainer.extend `
+    height: 400px;
+    width: 300px;
+`;
+const Page = styled.h1 `
+    flex: 0 1 auto;
+`;
+const Logout = styled.button `
+    flex: 0 1 auto;
+`;
+const Login = styled.div `
+    flex: 0 1 auto;
+`;
 
 const HomePage = ({ isAuthenticated, logout }) =>  (
-<div>
-    <h1>HomePage</h1>
-    { isAuthenticated 
-    ? 
-    <button onClick={() => logout() }>Logout</button> 
-    : 
-    <div><Link to="/login">Login</Link> or <Link to="/signup">Sign Up</Link></div>}
-</div>
+    <HomePageContainer>
+        <Page>HomePage</Page>
+        { isAuthenticated 
+        ? 
+        <Logout onClick={() => logout() }>Logout</Logout> 
+        : 
+        <Login><Link to="/login">Login</Link> or <Link to="/signup">Sign Up</Link></Login>}
+    </HomePageContainer>
 );
 
 HomePage.propTypes = {

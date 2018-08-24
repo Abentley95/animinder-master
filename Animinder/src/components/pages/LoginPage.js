@@ -8,11 +8,12 @@ import LoginForm from '../forms/LoginForm';
 import { CenteredContainer } from '../styles/Containers';
 import { login } from '../../actions/auth';
 
-// const LoginStyle = {
-//     margin: "0 auto",
-//     width: "50%",
-//     marginTop: "30%"
-// }
+
+const LoginPageContainer = CenteredContainer.extend `
+    height: 400px;
+    width: 300px;
+    align-items: flex-start;
+`;
 
 class LoginPage extends React.Component {
     state={}
@@ -21,12 +22,12 @@ class LoginPage extends React.Component {
 
     render () {
         return (
-            <CenteredContainer>
+            <LoginPageContainer>
                 <h1>Login</h1>
                 <LoginForm submit={this.submit}/>
 
                 <Link to="/forgot_password">Forgot Password</Link>
-            </CenteredContainer>
+            </LoginPageContainer>
         );
     }
 }

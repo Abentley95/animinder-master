@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+const externalCall = axios.create({
+    baseURL: 'https://api.jikan.moe',
+    timeout: 10000,
+    headers: { 'Content-Type': 'application/json' }
+  });
 
 export default {
     user: {
@@ -9,5 +14,8 @@ export default {
         resetPasswordRequest: email => axios.post('/api/auth/reset_password_request', { email }),
         validateToken: token => axios.post('/api/auth/validate_token', { token }),
         resetPassword: data => axios.post('/api/auth/reset_password', { data }),
+    },
+    external: {
+        searchAnime: searchedText => externalCall.get(`/search/anime?q=${searchedText}&page=1`),
     }
 };

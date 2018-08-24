@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import { Form, Button } from "semantic-ui-react";
 import InlineError from "../messages/InlineError";
 
+const FormStyle = {
+    width: "100%",
+}
+
 class ResetPasswordForm extends React.Component {
   state = {
     data: {
@@ -46,7 +50,7 @@ class ResetPasswordForm extends React.Component {
     const { errors, data, loading } = this.state;
 
     return (
-      <Form onSubmit={this.onSubmit} loading={loading}>
+      <Form style={FormStyle} onSubmit={this.onSubmit} loading={loading}>
         <Form.Field error={!!errors.password}>
           <label htmlFor="password">New Password</label>
           <input

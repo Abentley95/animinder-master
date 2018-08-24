@@ -2,15 +2,12 @@ import styled from 'styled-components';
 
 
 export const CenteredContainer = styled.div`
-    padding: 10px;
-    width: 500px;
-    height: 600px;
-    margin: auto;
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top: 30%;
+    left: calc(50% - 150px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     @media (max-width: 700px) {
         background: palevioletred;
       }

@@ -4,6 +4,13 @@ import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
 import ResetPasswordForm from "../forms/ResetPasswordForm";
 import { validateToken, resetPassword } from "../../actions/auth";
+import { CenteredContainer } from '../styles/Containers';
+
+const ResetPasswordContainer = CenteredContainer.extend `
+    height: 400px;
+    width: 300px;
+    align-items: flex-start;
+`;
 
 class ResetPasswordPage extends React.Component {
   state = {
@@ -28,12 +35,12 @@ class ResetPasswordPage extends React.Component {
     const token = this.props.match.params.token;
 
     return (
-      <div>
+      <ResetPasswordContainer>
         {loading && <Message>Loading</Message>}
         {!loading &&
         success && <ResetPasswordForm submit={this.submit} token={token} />}
         {!loading && !success && <Message>Invalid Token</Message>}
-      </div>
+      </ResetPasswordContainer>
     );
   }
 }

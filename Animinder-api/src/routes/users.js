@@ -19,6 +19,4 @@ router.post("/", (req, res) => {
       .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
   });
 
-
-
 export default router;

@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { signup } from '../../actions/users';
 import SignupForm from '../forms/SignupForm';
+import { CenteredContainer } from '../styles/Containers';
+
+const SignupPageContainer = CenteredContainer.extend `
+    height: 400px;
+    width: 300px;
+    align-items: flex-start;
+`;
 
 class SignupPage extends React.Component {
     state={}
@@ -11,9 +18,9 @@ class SignupPage extends React.Component {
     
     render () {
         return (
-            <div>
+            <SignupPageContainer>
                 <SignupForm submit={this.submit}/>
-            </div>
+            </SignupPageContainer>
         );
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import HomePage from './components/pages/HomePage';
 import SignupPage from './components/pages/SignupPage';
@@ -11,8 +12,13 @@ import ForgotPasswordPage from './components/pages/ForgotPasswordPage';
 import ResetPasswordPage from './components/pages/ResetPasswordPage';
 import UserRoute from './components/routes/UserRoute';
 import GuestRoute from './components/routes/GuestRoute';
+import ReminderPage from './components/pages/ReminderPage';
 
-const App = ({ location }) =>  <div className="ui container">
+const AppWrapper = styled.div `
+    height: 100vh;
+`;
+
+const App = ({ location }) =>  <AppWrapper>
     <Route location={location} path="/" exact component={HomePage} />
     <Route location={location} path="/confirmation/:token" exact component={ConfirmationPage} />
     <GuestRoute location={location} path="/login" exact component={LoginPage} />
@@ -20,7 +26,8 @@ const App = ({ location }) =>  <div className="ui container">
     <GuestRoute location={location} path="/forgot_password" exact component={ForgotPasswordPage} />
     <GuestRoute location={location} path="/reset_password/:token" exact component={ResetPasswordPage} />
     <UserRoute location={location} path="/dashboard" exact component={DashboardPage} />
-</div>
+    <UserRoute location={location} path="/reminder" exact component={ReminderPage} />
+</AppWrapper>
 
 App.propTypes = {
     location: PropTypes.shape({

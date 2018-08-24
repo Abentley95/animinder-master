@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ForgotPasswordForm from '../forms/ForgotPasswordForm';
 import { resetPasswordRequest } from '../../actions/auth';
+import { CenteredContainer } from '../styles/Containers';
 
+const ForgotPasswordContainer = CenteredContainer.extend `
+    height: 400px;
+    width: 300px;
+`;
 
 
 class ForgotPasswordPage extends React.Component {
@@ -20,13 +25,13 @@ class ForgotPasswordPage extends React.Component {
     
     render () {
         return (
-            <div>
+            <ForgotPasswordContainer>
                 {this.state.success ? (
                     <Message>Email has been sent</Message>
                 ) : (
                     <ForgotPasswordForm submit={this.submit}/>
                 )}
-            </div>
+            </ForgotPasswordContainer>
         );
     }
 }

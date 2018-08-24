@@ -27,7 +27,6 @@ if(localStorage.animinderJWT) {
         email: payload.email,
         confirmed: payload.confirmed
     };
-    console.log('something', user);
     store.dispatch(userLoggedIn(user));
 }
 

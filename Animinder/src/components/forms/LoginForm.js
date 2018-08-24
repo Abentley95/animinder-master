@@ -6,7 +6,8 @@ import Validator from 'validator';
 import InlineError from '../messages/InlineError';
 
 const FormStyle = {
-    marginTop: "10px"
+    marginTop: "10px",
+    width: "100%"
 }
 
 export default class LoginForm extends React.Component {
