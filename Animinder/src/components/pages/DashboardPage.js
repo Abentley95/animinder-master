@@ -7,6 +7,7 @@ import ConfirmEmailMessage from '../messages/ConfirmEmailMessage';
 import { CenteredContainer } from '../styles/Containers';
 import { searchAnime } from '../../actions/jikan';
 import SearchCard from '../cards/SearchCard';
+import DescriptionCard from '../cards/DescriptionCard';
 
 const DashboardPageContainer = CenteredContainer.extend `
     width: 400px;
@@ -40,7 +41,8 @@ class DashboardPage extends React.Component {
         super(props);
         this.state={
             searched: null,
-            listOfCards: null
+            listOfCards: null,
+            searchResult: null,
         }
 
         this.submitSearch = this.submitSearch.bind(this);
@@ -57,11 +59,22 @@ class DashboardPage extends React.Component {
     }
     
     loopThroughResults() {
-        return this.props.searchResults.map(element => <SearchCard src={element.image_url} title={element.title} episodes={element.episodes} key={element.mal_id} description={element.description} score={element.score} type={element.type}/>);
+        return this.props.searchResults.map(element => {
+            const searchResult = {
+                src: element.image_url,
+                title: element.title,
+                episodes: element.episodes,
+                description: element.description,
+                score: element.score,
+                type: element.type,
+                malId: element.mal_id
+            }
+            return <SearchCard searchResult={searchResult} key={element.mal_id}/>
+        });
     }
 
     render() {
-    const { isConfirmed, searched } = this.props;
+    const { isConfirmed, searched, clickedAnime } = this.props;
 
     return (
         <div>
@@ -78,6 +91,9 @@ class DashboardPage extends React.Component {
                             searched && this.loopThroughResults()
                         }
                     </ CardContainer>
+                        {
+                            clickedAnime && <DescriptionCard data={clickedAnime}/>
+                        }
                 </div>
             )}
             {!isConfirmed && (
@@ -90,6 +106,7 @@ class DashboardPage extends React.Component {
 DashboardPage.propTypes = { 
     isConfirmed: Proptypes.bool.isRequired,
     searched: Proptypes.bool.isRequired,
+    clickedAnime: Proptypes.shape({}).isRequired,
     searchAnime: Proptypes.func.isRequired,
     searchResults: Proptypes.objectOf(Proptypes.array).isRequired
 }
@@ -98,7 +115,8 @@ function mapStateToProps(state) {
     return {
         searched: !!state.search[0],
         searchResults: state.search,
-        isConfirmed: !!state.user.confirmed
+        isConfirmed: !!state.user.confirmed,
+        clickedAnime: state.search.data
     }
 }
 

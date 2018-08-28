@@ -1,6 +1,8 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon, Image } from 'semantic-ui-react';
+import { connect }  from 'react-redux';
+import { deepSearchAnime } from '../../actions/jikan';
 
 class SearchCard extends React.Component {
     constructor (props){
@@ -27,7 +29,7 @@ class SearchCard extends React.Component {
     }
 
     titleClick(){
-        this.setState({ seeDescription: !this.state.seeDescription});
+        this.props.deepSearchAnime(this.props.searchResult.malId);
     }
 
     liked = {
@@ -35,7 +37,7 @@ class SearchCard extends React.Component {
     }
 
     render () {
-        const { src, title, episodes, description, type, score } = this.props;
+        const { src, title, episodes } = this.props.searchResult;
         return (
             <div>
                 <Card style={this.style}>
@@ -48,15 +50,6 @@ class SearchCard extends React.Component {
                     {!this.state.liked && <Icon onClick={this.likedClick} name='heart outline' />}
                     </a>
                     </Card.Content>
-                    <Card.Content extra>
-                    { this.state.seeDescription && (
-                        <div>
-                            <Card.Meta> Type: {type}</Card.Meta>
-                            <Card.Meta> Score: {score}</Card.Meta>
-                            <Card.Description>{description}</Card.Description>
-                        </div>
-                    )}
-                    </Card.Content>
                 </Card>
             </div>
         );
@@ -65,12 +58,13 @@ class SearchCard extends React.Component {
 
 
 SearchCard.propTypes = { 
-    src: Proptypes.string.isRequired,
-    title: Proptypes.string.isRequired,
-    episodes: Proptypes.number.isRequired,
-    description: Proptypes.string.isRequired,
-    type: Proptypes.string.isRequired,
-    score: Proptypes.string.isRequired,
+    deepSearchAnime: Proptypes.func.isRequired,
+    searchResult: Proptypes.shape({
+        src: Proptypes.string.isRequired,
+        title: Proptypes.string.isRequired,
+        episodes: Proptypes.number.isRequired,
+        malId: Proptypes.number.isRequired,
+    }).isRequired,
 }
 
-export default SearchCard
+export default connect(null, { deepSearchAnime })(SearchCard)

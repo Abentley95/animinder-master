@@ -17,5 +17,6 @@ export default {
     },
     external: {
         searchAnime: searchedText => externalCall.get(`/search/anime?q=${searchedText}&page=1`),
+        deepSearchAnime: malId => externalCall.get(`/anime/${malId}`),
     }
 };
