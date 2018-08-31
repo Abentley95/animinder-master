@@ -10,11 +10,10 @@ class DescriptionCard extends React.Component {
             seeDescription: false
         }
         this.likedClick = this.likedClick.bind(this);
-        this.titleClick = this.titleClick.bind(this);
     }
 
     style = {
-        margin: '5px',
+        margin: '0 auto',
         width: '90%'
     }
 
@@ -23,12 +22,12 @@ class DescriptionCard extends React.Component {
         width: '225px'
     }
 
-    likedClick(){
-        this.setState({ liked: !this.state.liked});
+    cardContent = {
+        display: 'flex'
     }
 
-    titleClick(){
-        this.setState({ seeDescription: !this.state.seeDescription});
+    likedClick(){
+        this.setState({ liked: !this.state.liked});
     }
 
     liked = {
@@ -40,16 +39,18 @@ class DescriptionCard extends React.Component {
         return (
             <div>
                 <Card style={this.style}>
-                    <Card.Content>
-                        <Image  floated='left' style={this.imageStyle} src={image_url} />
-                        <Card.Header onClick={this.titleClick}>{title}</Card.Header>
-                        <Card.Meta> episodes: {episodes}</Card.Meta>
-                        <a>
-                        {this.state.liked && <Icon onClick={this.likedClick} style={this.liked} name='heart' />}
-                        {!this.state.liked && <Icon onClick={this.likedClick} name='heart outline' />}
-                        </a>
-                        <Card.Meta> Type: {type}</Card.Meta>
-                        <Card.Meta> Score: {score}</Card.Meta>
+                    <Card.Content style={this.cardContent}>
+                        <Image floated='left' style={this.imageStyle} src={image_url} />
+                        <div>
+                            <Card.Header>{title}</Card.Header>
+                            <Card.Meta> episodes: {episodes}</Card.Meta>
+                            <a>
+                            {this.state.liked && <Icon onClick={this.likedClick} style={this.liked} name='heart' />}
+                            {!this.state.liked && <Icon onClick={this.likedClick} name='heart outline' />}
+                            </a>
+                            <Card.Meta> Type: {type}</Card.Meta>
+                            <Card.Meta> Score: {score}</Card.Meta>
+                        </div>
                         <Card.Description>{synopsis}</Card.Description>
                     </Card.Content>
                 </Card>
