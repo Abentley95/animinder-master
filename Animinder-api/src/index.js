@@ -2,9 +2,6 @@ import express from 'express';
 import path from 'path';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-// import https from 'https';
-// import fs from 'fs';
-// import path from 'path';
 import Promise from 'bluebird'
 import bodyParser from 'body-parser';
 import auth from './routes/auth';
@@ -25,8 +22,3 @@ app.get('/*', (req, res) => {
 })
 
 app.listen(8080, () => console.log('running on localhost 8080'));
-
-// const server_options = {
-//     cert: fs.readFileSync(path.join(__dirname, 'ssl', 'server.crt')),
-//     key: fs.readFileSync(path.join(__dirname, 'ssl', 'server.key')),
-// }

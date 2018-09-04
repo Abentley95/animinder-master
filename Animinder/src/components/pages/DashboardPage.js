@@ -116,7 +116,7 @@ function mapStateToProps(state) {
         searched: !!state.search[0],
         searchResults: state.search,
         isConfirmed: !!state.user.confirmed,
-        clickedAnime: state.search.data
+        clickedAnime: state.search.data,
     }
 }
 
