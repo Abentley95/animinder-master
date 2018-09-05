@@ -31,6 +31,16 @@ userSchema.methods.likeAnime = function likeAnime(titleString) {
     this.save();
 }
 
+userSchema.methods.unlikeAnime = function unlikeAnime(titleString) {
+    console.log('title', titleString);
+    console.log('title', this.likedAnime);
+    const index = this.likedAnime.find(obj => obj.title === titleString);
+    // const result = inventory.find( fruit => fruit.name === 'cherries' );
+    console.log('title', index);
+    this.likedAnime.splice(index, 1);
+    this.save();
+}
+
 userSchema.methods.isValidPassword = function isValidPassword(password) {
     return bcrypt.compareSync(password, this.passwordHash);
 }

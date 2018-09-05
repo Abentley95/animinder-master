@@ -9,3 +9,5 @@ export const signup = data => dispatch =>
 });
 
 export const likedAnime = (email, title) => dispatch => api.user.likedAnime(email, title);
+
+export const unlikeAnime = (email, title) => dispatch => api.user.unlikeAnime(email, title);

@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { connect }  from 'react-redux';
 import { deepSearchAnime } from '../../actions/jikan';
-import { likedAnime } from '../../actions/users';
+import { likedAnime, unlikeAnime } from '../../actions/users';
 
 class SearchCard extends React.Component {
     constructor (props){
@@ -26,9 +26,12 @@ class SearchCard extends React.Component {
     }
 
     likedClick(){
-        console.log('this.', this.props);
         this.setState({ liked: !this.state.liked});
-        this.props.likedAnime(this.props.userEmail, this.props.searchResult.title);
+        if(this.state.liked === false) {
+            this.props.likedAnime(this.props.userEmail, this.props.searchResult.title);
+        } else {
+            this.props.unlikeAnime(this.props.userEmail, this.props.searchResult.title);
+        }
     }
 
     titleClick(){
@@ -68,6 +71,7 @@ function mapStateToProps(state) {
 SearchCard.propTypes = { 
     deepSearchAnime: Proptypes.func.isRequired,
     likedAnime: Proptypes.func.isRequired,
+    unlikeAnime: Proptypes.func.isRequired,
     userEmail: Proptypes.string.isRequired,
     searchResult: Proptypes.shape({
         src: Proptypes.string.isRequired,
@@ -77,4 +81,4 @@ SearchCard.propTypes = {
     }).isRequired,
 }
 
-export default connect(mapStateToProps, { deepSearchAnime, likedAnime })(SearchCard)
+export default connect(mapStateToProps, { deepSearchAnime, likedAnime, unlikeAnime })(SearchCard)
