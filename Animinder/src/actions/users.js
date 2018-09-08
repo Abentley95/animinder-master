@@ -8,6 +8,8 @@ export const signup = data => dispatch =>
     dispatch(userLoggedIn(user));
 });
 
+export const allLikedAnime = () => dispatch => api.anime.allLikedAnime();
+
 export const likedAnime = (email, title) => dispatch => api.user.likedAnime(email, title);
 
 export const unlikeAnime = (email, title) => dispatch => api.user.unlikeAnime(email, title);

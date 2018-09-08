@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-userSchema.methods.likeAnime = function likeAnime(titleString) {
+userSchema.methods.actionLikedAnime = function actionLikedAnime(titleString) {
     this.likedAnime.push({title: titleString});
     this.save();
 }

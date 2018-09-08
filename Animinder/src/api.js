@@ -17,6 +17,11 @@ export default {
         validateToken: token => axios.post('/api/auth/validate_token', { token }),
         resetPassword: data => axios.post('/api/auth/reset_password', { data }),
     },
+    anime: {
+        allLikedAnime: () =>  axios.get('/api/anime/all_liked_anime').then(res => res.data.user),
+        // likedAnime: (email, title) =>  axios.post('/api/anime/liked_anime', { email, title }).then(res => res.data.user),
+        // unlikeAnime: (email, title) =>  axios.post('/api/anime/unlike_anime', { email, title }).then(res => res.data.user),
+    },
     external: {
         searchAnime: searchedText => externalCall.get(`/search/anime?q=${searchedText}&page=1`),
         deepSearchAnime: malId => externalCall.get(`/anime/${malId}`),

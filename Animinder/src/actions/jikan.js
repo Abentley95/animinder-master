@@ -1,6 +1,6 @@
 /* eslint-disable */
 import api from "../api";
-import { SEARCH_RESULTS, DEEP_SEARCH_RESULTS } from '../types';
+import { SEARCH_RESULTS, DEEP_SEARCH_RESULTS, ALL_LIKED_ANIME } from '../types';
 
 export const searchResults = (results) => ({
     type: SEARCH_RESULTS,

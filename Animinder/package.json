@@ -12,6 +12,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
     "jwt-decode": "^2.2.0",
+    "normalizr": "^3.2.4",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",

@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
 router.post("/liked_anime", (req, res) => {
     User.findOne({ email: req.body.email }).then( user => {
         if(user) {
-            user.likeAnime(req.body.title);
+            user.actionLikedAnime(req.body.title);
             res.json({ user: user.toAuthJSON()  });
         } else {
             res.status(400).json({ errors: { global: "Invalid Credentials"}});

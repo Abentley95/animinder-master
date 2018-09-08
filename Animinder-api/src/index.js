@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Promise from 'bluebird'
 import bodyParser from 'body-parser';
+
 import auth from './routes/auth';
 import users from './routes/users';
 
