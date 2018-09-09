@@ -27,17 +27,16 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.actionLikedAnime = function actionLikedAnime(titleString) {
-    this.likedAnime.push({title: titleString});
-    this.save();
+    const index = this.likedAnime.find(obj => obj.title === titleString);
+    if(index === undefined) {
+        this.likedAnime.push({title: titleString});
+        this.save();
+    } 
 }
 
 userSchema.methods.unlikeAnime = function unlikeAnime(titleString) {
-    console.log('title', titleString);
-    console.log('title', this.likedAnime);
     const index = this.likedAnime.find(obj => obj.title === titleString);
-    // const result = inventory.find( fruit => fruit.name === 'cherries' );
-    console.log('title', index);
-    this.likedAnime.splice(index, 1);
+    this.likedAnime.remove(index);
     this.save();
 }
 

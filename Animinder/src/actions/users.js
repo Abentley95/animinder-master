@@ -1,6 +1,11 @@
 /* eslint-disable */
 import api from "../api";
-import { userLoggedIn } from "./auth";
+import { ALL_LIKED_ANIME } from "../types";
+
+export const fetchAllAnime = data => ({
+    type: ALL_LIKED_ANIME,
+    data
+});
 
 export const signup = data => dispatch =>
   api.user.signup(data).then(user => {
@@ -8,7 +13,11 @@ export const signup = data => dispatch =>
     dispatch(userLoggedIn(user));
 });
 
-export const allLikedAnime = () => dispatch => api.anime.allLikedAnime();
+export const allLikedAnime = (email) => dispatch => {
+    api.user.allLikedAnime(email).then((data) => {
+        dispatch(fetchAllAnime(data));
+    });
+};
 
 export const likedAnime = (email, title) => dispatch => api.user.likedAnime(email, title);
 

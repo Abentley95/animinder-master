@@ -41,6 +41,16 @@ router.post("/unlike_anime", (req, res) => {
     });
 });
 
+router.post("/all_liked_anime", (req, res) => {
+    User.findOne({ email: req.body.email }).then( user => {
+        if(user) {
+            res.json({ likedAnime: user.likedAnime });
+        } else {
+            res.status(400).json({ errors: { global: "Invalid Credentials"}});
+        }
+    });
+});
+
 router.post("/confirmation", (req, res) => {
     const token = req.body.token;
     User.findOneAndUpdate(

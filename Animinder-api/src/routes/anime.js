@@ -32,15 +32,4 @@ router.post("/unlike_anime", (req, res) => {
     });
 });
 
-router.post("/all_liked_anime", (req, res) => {
-    User.findOne({ email: req.body.email }).then( user => {
-        if(user) {
-            user.unlikeAnime(req.body.title);
-            res.json({ user: user.toAuthJSON()  });
-        } else {
-            res.status(400).json({ errors: { global: "Invalid Credentials"}});
-        }
-    });
-});
-
 export default router;

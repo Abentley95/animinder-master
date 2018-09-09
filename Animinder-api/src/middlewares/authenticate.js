@@ -4,7 +4,7 @@ import User from '../models/User';
 export default (req, res, next) => {
     const header = req.headers.authoization;
     let token;
-    console.log('somethign', req);
+    // console.log('somethign', req);
     if (header) token = header.split(" ")[1];
 
     if (token) {

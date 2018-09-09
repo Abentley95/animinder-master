@@ -29,7 +29,7 @@ class SearchCard extends React.Component {
         this.setState({ liked: !this.state.liked});
         if(this.state.liked === false) {
             this.props.likedAnime(this.props.userEmail, this.props.searchResult.title);
-            this.props.allLikedAnime(this.props.userEmail, this.props.searchResult.title);
+            this.props.allLikedAnime(this.props.userEmail);
         } else {
             this.props.unlikeAnime(this.props.userEmail, this.props.searchResult.title);
         }
