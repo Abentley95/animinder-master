@@ -1,24 +1,24 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User';
+// import jwt from 'jsonwebtoken';
+// import User from '../models/User';
 
-export default (req, res, next) => {
-    const header = req.headers.authoization;
-    let token;
-    // console.log('somethign', req);
-    if (header) token = header.split(" ")[1];
+// export default (req, res, next) => {
+//     const header = req.headers.authoization;
+//     let token;
+//     // console.log('somethign', req);
+//     if (header) token = header.split(" ")[1];
 
-    if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-            if (err) {
-                res.status(401).json({ errors: { global: "Invalid Token"}});
-            } else {
-                User.findOne({email: decoded.email}).then((user) => {
-                    req.currentUser = user;
-                    next();
-                });
-            }
-        });
-    } else {
-        res.status(401).json({ errors: {global: "No Token"}});
-    }
-}
+//     if (token) {
+//         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+//             if (err) {
+//                 res.status(401).json({ errors: { global: "Invalid Token"}});
+//             } else {
+//                 User.findOne({email: decoded.email}).then((user) => {
+//                     req.currentUser = user;
+//                     next();
+//                 });
+//             }
+//         });
+//     } else {
+//         res.status(401).json({ errors: {global: "No Token"}});
+//     }
+// }

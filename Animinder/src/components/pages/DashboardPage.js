@@ -8,6 +8,8 @@ import { CenteredContainer } from '../styles/Containers';
 import { searchAnime } from '../../actions/jikan';
 import SearchCard from '../cards/SearchCard';
 import DescriptionCard from '../cards/DescriptionCard';
+import { allLikedAnime } from '../../actions/users';
+
 
 const DashboardPageContainer = CenteredContainer.extend `
     width: 400px;
@@ -46,7 +48,12 @@ class DashboardPage extends React.Component {
         }
 
         this.submitSearch = this.submitSearch.bind(this);
-      }
+    }
+
+    componentDidMount() {
+        this.props.allLikedAnime(this.props.userEmail);
+    }
+
     onChange = (e) => {
         const q = e.target.value;
         this.setState({searched: q});
@@ -60,6 +67,7 @@ class DashboardPage extends React.Component {
     
     loopThroughResults() {
         return this.props.searchResults.map(element => {
+            const liked = this.props.likedAnime.find(obj => obj.title === element.title);
             const searchResult = {
                 src: element.image_url,
                 title: element.title,
@@ -67,7 +75,8 @@ class DashboardPage extends React.Component {
                 description: element.description,
                 score: element.score,
                 type: element.type,
-                malId: element.mal_id
+                malId: element.mal_id,
+                liked,
             }
             return <SearchCard searchResult={searchResult} key={element.mal_id}/>
         });
@@ -113,6 +122,8 @@ DashboardPage.propTypes = {
 
 function mapStateToProps(state) {
     return {
+        likedAnime: state.user.likedAnime,
+        userEmail: state.user.email,
         searched: !!state.search[0],
         searchResults: state.search,
         isConfirmed: !!state.user.confirmed,
@@ -120,4 +131,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { searchAnime })(DashboardPage); 
+export default connect(mapStateToProps, { searchAnime, allLikedAnime })(DashboardPage); 
