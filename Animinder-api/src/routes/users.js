@@ -20,10 +20,9 @@ router.post("/", (req, res) => {
 });
 
 router.post("/liked_anime", (req, res) => {
-    console.log('sssss', req.body.email);
     User.findOne({ email: req.body.email }).then( user => {
         if(user) {
-            user.actionLikedAnime(req.body.title);
+            user.actionLikedAnime(req.body.result);
             res.json({ user: user.toAuthJSON()  });
         } else {
             res.status(400).json({ errors: { global: "Invalid Credentials"}});
@@ -34,7 +33,7 @@ router.post("/liked_anime", (req, res) => {
 router.post("/unlike_anime", (req, res) => {
     User.findOne({ email: req.body.email }).then( user => {
         if(user) {
-            user.unlikeAnime(req.body.title);
+            user.unlikeAnime(req.body.result);
             res.json({ user: user.toAuthJSON()  });
         } else {
             res.status(400).json({ errors: { global: "Invalid Credentials"}});

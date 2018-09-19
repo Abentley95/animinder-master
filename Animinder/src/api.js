@@ -9,8 +9,8 @@ const externalCall = axios.create({
 export default {
     user: {
         signup: user =>  axios.post('/api/users', { user }).then(res => res.data.user),
-        likedAnime: (email, title) =>  axios.post('/api/users/liked_anime', { email, title }),
-        unlikeAnime: (email, title) =>  axios.post('/api/users/unlike_anime', { email, title }),
+        likedAnime: (email, result) =>  axios.post('/api/users/liked_anime', { email, result }),
+        unlikeAnime: (email, result) =>  axios.post('/api/users/unlike_anime', { email, result }),
         allLikedAnime: (email) =>  axios.post('/api/users/all_liked_anime', {email}).then(res => res),
         login: credentials => axios.post('/api/auth', {credentials}).then(res => res.data.user),
         confirm: token => axios.post('/api/auth/confirmation', { token }).then(res => res.data.user),

@@ -19,6 +19,6 @@ export const allLikedAnime = (email) => dispatch => {
     });
 };
 
-export const likedAnime = (email, title) => dispatch => api.user.likedAnime(email, title);
+export const likedAnime = (email, result) => dispatch => api.user.likedAnime(email, result);
 
-export const unlikeAnime = (email, title) => dispatch => api.user.unlikeAnime(email, title);
+export const unlikeAnime = (email, result) => dispatch => api.user.unlikeAnime(email, result);

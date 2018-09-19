@@ -19,23 +19,35 @@ const userSchema = new mongoose.Schema({
     confirmed: {type: Boolean, default: false},
     confirmationToken:  {type: String, default: '' },
     likedAnime: [
-        {title: {type: String, required: true}}
+        {}
     ]
 }, 
 {
     timestamps: true
 });
 
-userSchema.methods.actionLikedAnime = function actionLikedAnime(titleString) {
-    const index = this.likedAnime.find(obj => obj.title === titleString);
+userSchema.methods.actionLikedAnime = function actionLikedAnime(result) {
+    const index = this.likedAnime.find(obj => { 
+        let findEquiAnime;
+        if(obj && obj[result.title] && obj[result.title].title) {
+            findEquiAnime = obj[result.title].title === result.title 
+        }
+        return findEquiAnime;
+    });
     if(index === undefined) {
-        this.likedAnime.push({title: titleString});
+        this.likedAnime.push({[result.title]: result});
         this.save();
     } 
 }
 
-userSchema.methods.unlikeAnime = function unlikeAnime(titleString) {
-    const index = this.likedAnime.find(obj => obj.title === titleString);
+userSchema.methods.unlikeAnime = function unlikeAnime(result) {
+    const index = this.likedAnime.find(obj => {
+        let findEquiAnime;
+        if(obj && obj[result.title] && obj[result.title].title) {
+            findEquiAnime = obj[result.title].title === result.title
+        }
+        return findEquiAnime;
+    });
     this.likedAnime.remove(index);
     this.save();
 }

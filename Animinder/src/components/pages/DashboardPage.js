@@ -67,7 +67,13 @@ class DashboardPage extends React.Component {
     
     loopThroughResults() {
         return this.props.searchResults.map(element => {
-            const liked = this.props.likedAnime.find(obj => obj.title === element.title);
+            const liked = this.props.likedAnime.find(obj => {
+                let isAnimeLiked;
+                if(obj && obj[element.title]) {
+                    isAnimeLiked = obj[element.title].title === element.title
+                }
+                return isAnimeLiked;
+            });
             const searchResult = {
                 src: element.image_url,
                 title: element.title,
@@ -113,6 +119,9 @@ class DashboardPage extends React.Component {
 };
 
 DashboardPage.propTypes = { 
+    likedAnime: Proptypes.func.isRequired,
+    userEmail: Proptypes.string.isRequired,
+    allLikedAnime: Proptypes.func.isRequired,
     isConfirmed: Proptypes.bool.isRequired,
     searched: Proptypes.bool.isRequired,
     clickedAnime: Proptypes.shape({}).isRequired,
